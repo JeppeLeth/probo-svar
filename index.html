@@ -7,67 +7,40 @@
 <style>
   /* ----------  COLOUR PALETTE  ---------- */
   :root{
-    /* light-mode defaults */
-    --bg-page:#ffffff;
-    --bg-nav:#f5f7fa;
-    --bg-bq:#fafafa;
-    --bg-bq-hover:#f1f1f1;
+    /* light */
+    --bg-page:#ffffff;  --bg-nav:#f5f7fa;
+    --bg-bq:#fafafa;   --bg-bq-hover:#f1f1f1;
     --input-readonly:#eef2f7;
-
-    --primary:#1f2d3d;
-    --h4:#444444;
-    --accent:#0d6efd;
-
-    --border:#e1e4e8;
+    --primary:#1f2d3d; --h4:#444;
+    --accent:#0d6efd;  --border:#e1e4e8;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg-page:#121212;
-      --bg-nav:#1e1e1e;
-      --bg-bq:#1f1f1f;
-      --bg-bq-hover:#2a2a2a;
+      --bg-page:#121212; --bg-nav:#1e1e1e;
+      --bg-bq:#1f1f1f;   --bg-bq-hover:#2a2a2a;
       --input-readonly:#252525;
-
-      --primary:#e6e6e6;
-      --h4:#d0d0d0;
-      /* keep accent for brand contrast */
-
-      --border:#333333;
+      --primary:#e6e6e6; --h4:#d0d0d0;
+      --border:#333;
     }
   }
 
   /* ----------  BASE  ---------- */
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    line-height:1.55;
-    color:var(--primary);
-    background:var(--bg-page);
-  }
-  p{margin:.6rem 0 1.1rem;}
-  .wrapper{display:flex;}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+       line-height:1.55;color:var(--primary);background:var(--bg-page);}
+  p{margin:.6rem 0 1.1rem;} .wrapper{display:flex;}
 
   /* ----------  DRAWER / TOC  ---------- */
   nav{
-    position:sticky;top:0;z-index:900;
-    width:400px;flex-shrink:0;
-    background:var(--bg-nav);
-    border-right:1px solid var(--border);
-    padding:1rem 1.25rem 2rem;
-    max-height:100vh;overflow-y:auto;
+    position:sticky;top:0;z-index:900;width:400px;flex-shrink:0;
+    background:var(--bg-nav);border-right:1px solid var(--border);
+    padding:1rem 1.25rem 2rem;max-height:100vh;overflow-y:auto;
   }
-  nav h1{
-    margin:0 0 1.2rem;
-    font-size:1.07rem;font-weight:600;
-    color:var(--h4);
-  }
+  nav h1{margin:0 0 1.2rem;font-size:1.07rem;font-weight:600;color:var(--h4);}
   #toc-list{list-style:none;padding:0;margin:0;}
   #toc-list li{margin-block:.35rem;line-height:1.4;}
-  .level-2{padding-left:0}
-  .level-3{padding-left:1.25rem}
-  .level-4{padding-left:2.5rem}
+  .level-2{padding-left:0}.level-3{padding-left:1.25rem}.level-4{padding-left:2.5rem}
   .level-2>a{font-weight:600;font-size:.98rem;color:var(--accent);}
   .level-3>a{font-weight:500;font-size:.94rem;color:var(--primary);}
   .level-4>a{font-weight:400;font-size:.9rem;color:var(--h4);}
@@ -79,75 +52,55 @@
   .name-box label{display:block;font-size:.85rem;margin-bottom:.35rem;}
   .field-group{display:flex;gap:.5rem;}
   .field-group input{
-    flex:1;padding:.4rem .6rem;font-size:.9rem;
-    border:1px solid var(--border);border-radius:4px;
-    background:var(--bg-page);color:var(--primary);
+    flex:1;padding:.4rem .6rem;font-size:.9rem;background:var(--bg-page);
+    border:1px solid var(--border);border-radius:4px;color:var(--primary);
   }
   .field-group input[readonly]{background:var(--input-readonly);cursor:pointer;}
-  .field-group button{
-    padding:.45rem .85rem;font-size:.85rem;font-weight:600;
-    border:0;border-radius:4px;
-    background:var(--accent);color:#fff;cursor:pointer;
-  }
+  .field-group button{padding:.45rem .85rem;font-size:.85rem;font-weight:600;
+    border:0;border-radius:4px;background:var(--accent);color:#fff;cursor:pointer;}
   .hidden{display:none;}
 
   /* ----------  MAIN CONTENT  ---------- */
-  main{
-    flex:1;
-    padding:2rem 3rem 80vh;
-    overflow-x:auto;
-  }
-  h2{
-    margin:2.6rem 0 .8rem;
-    font-size:1.6rem;font-weight:700;color:var(--accent);
-    border-bottom:2px solid rgba(13,110,253,.18);
-    padding-bottom:.3rem;
-  }
+  main{flex:1;padding:2rem 3rem 80vh;overflow-x:auto;}
+  h2{margin:2.6rem 0 .8rem;font-size:1.6rem;font-weight:700;color:var(--accent);
+      border-bottom:2px solid rgba(13,110,253,.18);padding-bottom:.3rem;}
   h3{margin:2rem 0 .65rem;font-size:1.3rem;font-weight:600;}
-  h4{
-    margin:1.8rem 0 .4rem;padding-top:.6rem;
-    font-size:1.05rem;font-weight:600;color:var(--h4);
-    border-top:1px solid var(--border);
-  }
-  ul{padding-left:1.25rem;margin:.5rem 0 1.2rem;}
-  li{margin:.25rem 0;}
+  h4{margin:1.8rem 0 .4rem;padding-top:.6rem;font-size:1.05rem;font-weight:600;
+      color:var(--h4);border-top:1px solid var(--border);}
+  ul{padding-left:1.25rem;margin:.5rem 0 1.2rem;} li{margin:.25rem 0;}
 
-  /* ----------  BLOCKQUOTES & COPY BUTTON  ---------- */
+  /* keep headings clear of fixed menu button on mobile */
+  @media(max-width:768px){
+    h2,h3,h4{scroll-margin-top:3.5rem;}       /* ~56 px offset */
+  }
+
+  /* ----------  BLOCKQUOTES & COPY  ---------- */
   .bq-wrap{position:relative;margin:1.1rem 0;}
   .bq-wrap blockquote{
-    margin:0;
-    padding:1rem 1.2rem;
-    font-size:.9rem;
-    border:1px solid var(--border);
-    border-radius:4px;
-    background:var(--bg-bq);
-    transition:background-color .15s ease;
+    margin:0;padding:1rem 1.2rem;font-size:.9rem;background:var(--bg-bq);
+    border:1px solid var(--border);border-radius:4px;transition:background-color .15s;
   }
   .bq-wrap:hover blockquote{background:var(--bg-bq-hover);}
   .copy-btn{
-    position:absolute;top:6px;right:8px;
-    padding:.35rem .8rem;font-size:.85rem;font-weight:600;
-    background:var(--accent);color:#fff;
-    border:0;border-radius:4px;cursor:pointer;
+    position:absolute;top:6px;right:8px;padding:.35rem .8rem;font-size:.85rem;font-weight:600;
+    background:var(--accent);color:#fff;border:0;border-radius:4px;cursor:pointer;
     opacity:0;visibility:hidden;transform:translateY(-4px);
     transition:opacity .15s ease,transform .15s ease;
   }
-  .bq-wrap:hover .copy-btn,
-  .copy-btn:focus-visible,
-  .copy-btn.show{opacity:1;visibility:visible;transform:translateY(0);}
+  .bq-wrap:hover .copy-btn,.copy-btn:focus-visible,.copy-btn.show{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
 
   /* ----------  MOBILE  ---------- */
   .menu-toggle{
-    display:none;position:fixed;top:.75rem;left:.75rem;
-    background:var(--accent);color:#fff;border:0;
-    padding:.55rem .9rem;border-radius:4px;
-    font-size:1rem;cursor:pointer;z-index:1000;
+    display:none;position:fixed;top:.75rem;left:.75rem;z-index:1000;
+    background:var(--accent);color:#fff;border:0;padding:.55rem .9rem;
+    border-radius:4px;font-size:1rem;cursor:pointer;
   }
   @media(max-width:768px){
     nav{
       position:fixed;left:-100%;top:0;width:100%;height:100vh;
-      transition:left .3s ease;
-      padding:4rem 1.25rem 2rem;max-height:none;
+      transition:left .3s ease;padding:4rem 1.25rem 2rem;max-height:none;
     }
     nav.open{left:0;}
     .menu-toggle{display:block;}
@@ -174,7 +127,7 @@
   </nav>
 
   <main>
-    <!-- ------------- full document content (with “ZZZ” in blockquotes) ------------- -->
+    <!-- ------------- full document content with “ZZZ” placeholders ------------- -->
 
     <!-- -------------  YOUR CONTENT STARTS HERE (unchanged) ------------- -->
 
@@ -312,45 +265,50 @@
       Hvis du ønsker at få det undersøgt nærmere, kan du f.eks. kontakte E-Klink, som har erfaring med ventilation, og få dem til at kigge på det for egen bekostning.<br><br>
       Med venlig hilsen ZZZ
     </blockquote>
-  </main>
+   </main>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------- build TOC ---------- */
+  /* ---------- TOC ---------- */
   const toc=document.getElementById("toc-list");
   document.querySelectorAll("main h2,main h3,main h4").forEach((h,i)=>{
     const lvl=h.tagName.slice(1),id=h.id||`sec-${i+1}`;h.id=id;
     toc.insertAdjacentHTML("beforeend",`<li class="level-${lvl}"><a href="#${id}">${h.textContent}</a></li>`);
   });
 
-  /* ---------- drawer toggle ---------- */
+  /* ---------- Drawer toggle ---------- */
   const nav=document.querySelector("nav");
-  document.querySelector(".menu-toggle").addEventListener("click",()=>nav.classList.toggle("open"));
-  nav.addEventListener("click",e=>{if(e.target.tagName==="A"&&innerWidth<=768){setTimeout(()=>nav.classList.remove("open"),200);}});
+  const toggleBtn=document.querySelector(".menu-toggle");
+  toggleBtn.addEventListener("click",()=>nav.classList.toggle("open"));
+  nav.addEventListener("click",e=>{
+    if(e.target.tagName==="A"&&innerWidth<=768){
+      setTimeout(()=>nav.classList.remove("open"),200);
+    }
+  });
 
-  /* ---------- blockquotes: wrap, copy, long-press ---------- */
+  /* ---------- Blockquotes: wrap, copy, long-press ---------- */
   document.querySelectorAll("main blockquote").forEach(bq=>{
-    const wrap=document.createElement("div");wrap.className="bq-wrap";bq.parentNode.insertBefore(wrap,bq);wrap.appendChild(bq);
-    bq.dataset.original=bq.innerHTML;                     /* keep raw with ZZZ */
-    const btn=document.createElement("button");btn.className="copy-btn";btn.type="button";btn.textContent="Kopier";
+    const wrap=document.createElement("div");wrap.className="bq-wrap";
+    bq.parentNode.insertBefore(wrap,bq);wrap.appendChild(bq);
+    bq.dataset.original=bq.innerHTML;
+
+    const btn=document.createElement("button");
+    btn.className="copy-btn";btn.type="button";btn.textContent="Kopier";
     wrap.appendChild(btn);
 
-    /* click on button (desktop) */
     btn.addEventListener("click",copyNow);
 
-    /* long-press on quote (mobile) */
     let pressTimer=null;
     wrap.addEventListener("touchstart",()=>{
-      btn.classList.add("show");                          /* reveal pill asap */
-      pressTimer=setTimeout(copyNow,500);                 /* 500 ms long-press */
+      btn.classList.add("show");
+      pressTimer=setTimeout(copyNow,500);
     });
-    wrap.addEventListener("touchend",clearPress);
-    wrap.addEventListener("touchcancel",clearPress);
+    wrap.addEventListener("touchend",stopPress);
+    wrap.addEventListener("touchcancel",stopPress);
 
-    function clearPress(){clearTimeout(pressTimer);setTimeout(()=>btn.classList.remove("show"),1600);}
-
+    function stopPress(){clearTimeout(pressTimer);setTimeout(()=>btn.classList.remove("show"),1600);}
     function copyNow(){
       navigator.clipboard.writeText(bq.innerText.trim()).then(()=>{
         btn.textContent="Kopieret!";
@@ -359,14 +317,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* ---------- name logic ---------- */
+  /* ---------- Name logic ---------- */
   const nameInput=document.getElementById("spname"),saveBtn=document.getElementById("save-name");
 
   function applyName(){
     const name=localStorage.getItem("service_person_name")||"";
     document.querySelectorAll("main blockquote").forEach(bq=>{
       const tmpl=bq.dataset.original||bq.innerHTML;
-      bq.innerHTML = name ? tmpl.replace(/ZZZ/g,name) : tmpl;   // keep ZZZ if blank
+      bq.innerHTML=name?tmpl.replace(/ZZZ/g,name):tmpl;
     });
   }
 
@@ -384,19 +342,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveName(){
     const val=nameInput.value.trim();
-    val ? localStorage.setItem("service_person_name",val) : localStorage.removeItem("service_person_name");
+    val?localStorage.setItem("service_person_name",val):localStorage.removeItem("service_person_name");
     renderNameBox();
   }
 
   saveBtn.addEventListener("click",saveName);
-
-  /* Enter key should save, like clicking the button */
-  nameInput.addEventListener("keydown",e=>{
-    if(e.key==="Enter"){e.preventDefault();saveName();}
-  });
-
+  nameInput.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();saveName();}});
   nameInput.addEventListener("click",()=>{
-    if(nameInput.readOnly){nameInput.readOnly=false;saveBtn.classList.remove("hidden");nameInput.focus();}
+    if(nameInput.readOnly){
+      nameInput.readOnly=false;
+      saveBtn.classList.remove("hidden");
+      nameInput.focus();
+    }
   });
 });
 </script>
