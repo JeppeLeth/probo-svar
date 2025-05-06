@@ -5,66 +5,153 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Standardsvar til Probo</title>
 <style>
-  /* ——— variables & base ——— */
-  :root{--nav-w:400px;--primary:#1f2d3d;--accent:#0d6efd;--h4:#444;--bg:#f5f7fa;--border:#e1e4e8;}
-  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
-  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;color:var(--primary);}
-  p{margin:.6rem 0 1.1rem;} .wrapper{display:flex;}
+  /* ----------  COLOUR PALETTE  ---------- */
+  :root{
+    /* light-mode defaults */
+    --bg-page:#ffffff;
+    --bg-nav:#f5f7fa;
+    --bg-bq:#fafafa;
+    --bg-bq-hover:#f1f1f1;
+    --input-readonly:#eef2f7;
 
-  /* ——— drawer & TOC ——— */
+    --primary:#1f2d3d;
+    --h4:#444444;
+    --accent:#0d6efd;
+
+    --border:#e1e4e8;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg-page:#121212;
+      --bg-nav:#1e1e1e;
+      --bg-bq:#1f1f1f;
+      --bg-bq-hover:#2a2a2a;
+      --input-readonly:#252525;
+
+      --primary:#e6e6e6;
+      --h4:#d0d0d0;
+      /* keep accent for brand contrast */
+
+      --border:#333333;
+    }
+  }
+
+  /* ----------  BASE  ---------- */
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    line-height:1.55;
+    color:var(--primary);
+    background:var(--bg-page);
+  }
+  p{margin:.6rem 0 1.1rem;}
+  .wrapper{display:flex;}
+
+  /* ----------  DRAWER / TOC  ---------- */
   nav{
-    position:sticky;top:0;z-index:900;width:var(--nav-w);flex-shrink:0;
-    background:var(--bg);border-right:1px solid var(--border);
-    padding:1rem 1.25rem 2rem;max-height:100vh;overflow-y:auto;
+    position:sticky;top:0;z-index:900;
+    width:400px;flex-shrink:0;
+    background:var(--bg-nav);
+    border-right:1px solid var(--border);
+    padding:1rem 1.25rem 2rem;
+    max-height:100vh;overflow-y:auto;
   }
   nav h1{
-    margin:0 0 1.2rem;font-size:1.07rem;font-weight:600;
-    color:var(--h4);            /* was accent → now same as H4 */
+    margin:0 0 1.2rem;
+    font-size:1.07rem;font-weight:600;
+    color:var(--h4);
   }
-  #toc-list{list-style:none;padding:0;margin:0;} #toc-list li{margin-block:.35rem;line-height:1.4;}
-  .level-2{padding-left:0}.level-3{padding-left:1.25rem}.level-4{padding-left:2.5rem}
+  #toc-list{list-style:none;padding:0;margin:0;}
+  #toc-list li{margin-block:.35rem;line-height:1.4;}
+  .level-2{padding-left:0}
+  .level-3{padding-left:1.25rem}
+  .level-4{padding-left:2.5rem}
   .level-2>a{font-weight:600;font-size:.98rem;color:var(--accent);}
   .level-3>a{font-weight:500;font-size:.94rem;color:var(--primary);}
   .level-4>a{font-weight:400;font-size:.9rem;color:var(--h4);}
   #toc-list a{text-decoration:none;transition:color .15s;}
   #toc-list a:hover{color:var(--accent);text-decoration:underline;}
 
-  /* ——— name box ——— */
-  .name-box{margin-top:1.8rem;} .name-box label{display:block;font-size:.85rem;margin-bottom:.35rem;}
+  /* ----------  NAME BOX  ---------- */
+  .name-box{margin-top:1.8rem;}
+  .name-box label{display:block;font-size:.85rem;margin-bottom:.35rem;}
   .field-group{display:flex;gap:.5rem;}
-  .field-group input{flex:1;padding:.4rem .6rem;font-size:.9rem;border:1px solid var(--border);border-radius:4px;}
-  .field-group input[readonly]{background:#eef2f7;cursor:pointer;}
-  .field-group button{padding:.45rem .85rem;font-size:.85rem;font-weight:600;border:0;border-radius:4px;background:var(--accent);color:#fff;cursor:pointer;}
+  .field-group input{
+    flex:1;padding:.4rem .6rem;font-size:.9rem;
+    border:1px solid var(--border);border-radius:4px;
+    background:var(--bg-page);color:var(--primary);
+  }
+  .field-group input[readonly]{background:var(--input-readonly);cursor:pointer;}
+  .field-group button{
+    padding:.45rem .85rem;font-size:.85rem;font-weight:600;
+    border:0;border-radius:4px;
+    background:var(--accent);color:#fff;cursor:pointer;
+  }
   .hidden{display:none;}
 
-  /* ——— main content ——— */
-  main{flex:1;padding:2rem 3rem 80vh;overflow-x:auto;}
-  h2{margin:2.6rem 0 .8rem;font-size:1.6rem;font-weight:700;color:var(--accent);
-      border-bottom:2px solid rgba(13,110,253,.18);padding-bottom:.3rem;}
+  /* ----------  MAIN CONTENT  ---------- */
+  main{
+    flex:1;
+    padding:2rem 3rem 80vh;
+    overflow-x:auto;
+  }
+  h2{
+    margin:2.6rem 0 .8rem;
+    font-size:1.6rem;font-weight:700;color:var(--accent);
+    border-bottom:2px solid rgba(13,110,253,.18);
+    padding-bottom:.3rem;
+  }
   h3{margin:2rem 0 .65rem;font-size:1.3rem;font-weight:600;}
-  h4{margin:1.8rem 0 .4rem;padding-top:.6rem;font-size:1.05rem;font-weight:600;color:var(--h4);
-      border-top:1px solid var(--border);}
-  ul{padding-left:1.25rem;margin:.5rem 0 1.2rem;} li{margin:.25rem 0;}
+  h4{
+    margin:1.8rem 0 .4rem;padding-top:.6rem;
+    font-size:1.05rem;font-weight:600;color:var(--h4);
+    border-top:1px solid var(--border);
+  }
+  ul{padding-left:1.25rem;margin:.5rem 0 1.2rem;}
+  li{margin:.25rem 0;}
 
-  /* ——— blockquotes & copy ——— */
+  /* ----------  BLOCKQUOTES & COPY BUTTON  ---------- */
   .bq-wrap{position:relative;margin:1.1rem 0;}
   .bq-wrap blockquote{
-      margin:0;padding:1rem 1.2rem;font-size:0.9rem;border:1px solid var(--border);
-      border-radius:4px;background:#fafafa;transition:background-color .15s ease;
+    margin:0;
+    padding:1rem 1.2rem;
+    font-size:.9rem;
+    border:1px solid var(--border);
+    border-radius:4px;
+    background:var(--bg-bq);
+    transition:background-color .15s ease;
   }
-  .bq-wrap:hover blockquote{background:#f1f1f1;}
-  .copy-btn{position:absolute;top:6px;right:8px;padding:.35rem .8rem;font-size:.85rem;font-weight:600;
-      background:var(--accent);color:#fff;border:0;border-radius:4px;cursor:pointer;opacity:0;visibility:hidden;
-      transform:translateY(-4px);transition:opacity .15s ease,transform .15s ease;}
-  .bq-wrap:hover .copy-btn,.copy-btn:focus-visible,.copy-btn.show{opacity:1;visibility:visible;transform:translateY(0);}
+  .bq-wrap:hover blockquote{background:var(--bg-bq-hover);}
+  .copy-btn{
+    position:absolute;top:6px;right:8px;
+    padding:.35rem .8rem;font-size:.85rem;font-weight:600;
+    background:var(--accent);color:#fff;
+    border:0;border-radius:4px;cursor:pointer;
+    opacity:0;visibility:hidden;transform:translateY(-4px);
+    transition:opacity .15s ease,transform .15s ease;
+  }
+  .bq-wrap:hover .copy-btn,
+  .copy-btn:focus-visible,
+  .copy-btn.show{opacity:1;visibility:visible;transform:translateY(0);}
 
-  /* ——— mobile tweaks ——— */
-  .menu-toggle{display:none;position:fixed;top:.75rem;left:.75rem;background:var(--accent);color:#fff;
-      border:0;padding:.55rem .9rem;border-radius:4px;font-size:1rem;cursor:pointer;z-index:1000;}
+  /* ----------  MOBILE  ---------- */
+  .menu-toggle{
+    display:none;position:fixed;top:.75rem;left:.75rem;
+    background:var(--accent);color:#fff;border:0;
+    padding:.55rem .9rem;border-radius:4px;
+    font-size:1rem;cursor:pointer;z-index:1000;
+  }
   @media(max-width:768px){
-    nav{position:fixed;left:-100%;top:0;width:100%;height:100vh;transition:left .3s ease;
-        padding:4rem 1.25rem 2rem;max-height:none;} nav.open{left:0;}
-    .menu-toggle{display:block;} main{padding:4rem 1rem 80vh;}
+    nav{
+      position:fixed;left:-100%;top:0;width:100%;height:100vh;
+      transition:left .3s ease;
+      padding:4rem 1.25rem 2rem;max-height:none;
+    }
+    nav.open{left:0;}
+    .menu-toggle{display:block;}
+    main{padding:4rem 1rem 80vh;}
   }
 </style>
 </head>
@@ -74,10 +161,9 @@
 
 <div class="wrapper">
   <nav>
-    <h1>Indhold</h1>   <!-- text changed -->
+    <h1>Indhold</h1>
     <ul id="toc-list"></ul>
 
-    <!-- name input -->
     <div class="name-box">
       <label for="spname">Mit navn</label>
       <div class="field-group">
@@ -88,6 +174,8 @@
   </nav>
 
   <main>
+    <!-- ------------- full document content (with “ZZZ” in blockquotes) ------------- -->
+
     <!-- -------------  YOUR CONTENT STARTS HERE (unchanged) ------------- -->
 
     <h1>Standardsvar til Probo</h1>
