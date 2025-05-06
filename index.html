@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standardsvar til Probo</title>
+<style>
+  /* ——— variables & base ——— */
+  :root{--nav-w:400px;--primary:#1f2d3d;--accent:#0d6efd;--h4:#444;--bg:#f5f7fa;--border:#e1e4e8;}
+  *{box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.55;color:var(--primary);}
+  p{margin:.6rem 0 1.1rem;} .wrapper{display:flex;}
+
+  /* ——— drawer & TOC ——— */
+  nav{
+    position:sticky;top:0;z-index:900;width:var(--nav-w);flex-shrink:0;
+    background:var(--bg);border-right:1px solid var(--border);
+    padding:1rem 1.25rem 2rem;max-height:100vh;overflow-y:auto;
+  }
+  nav h1{
+    margin:0 0 1.2rem;font-size:1.07rem;font-weight:600;
+    color:var(--h4);            /* was accent → now same as H4 */
+  }
+  #toc-list{list-style:none;padding:0;margin:0;} #toc-list li{margin-block:.35rem;line-height:1.4;}
+  .level-2{padding-left:0}.level-3{padding-left:1.25rem}.level-4{padding-left:2.5rem}
+  .level-2>a{font-weight:600;font-size:.98rem;color:var(--accent);}
+  .level-3>a{font-weight:500;font-size:.94rem;color:var(--primary);}
+  .level-4>a{font-weight:400;font-size:.9rem;color:var(--h4);}
+  #toc-list a{text-decoration:none;transition:color .15s;}
+  #toc-list a:hover{color:var(--accent);text-decoration:underline;}
+
+  /* ——— name box ——— */
+  .name-box{margin-top:1.8rem;} .name-box label{display:block;font-size:.85rem;margin-bottom:.35rem;}
+  .field-group{display:flex;gap:.5rem;}
+  .field-group input{flex:1;padding:.4rem .6rem;font-size:.9rem;border:1px solid var(--border);border-radius:4px;}
+  .field-group input[readonly]{background:#eef2f7;cursor:pointer;}
+  .field-group button{padding:.45rem .85rem;font-size:.85rem;font-weight:600;border:0;border-radius:4px;background:var(--accent);color:#fff;cursor:pointer;}
+  .hidden{display:none;}
+
+  /* ——— main content ——— */
+  main{flex:1;padding:2rem 3rem 80vh;overflow-x:auto;}
+  h2{margin:2.6rem 0 .8rem;font-size:1.6rem;font-weight:700;color:var(--accent);
+      border-bottom:2px solid rgba(13,110,253,.18);padding-bottom:.3rem;}
+  h3{margin:2rem 0 .65rem;font-size:1.3rem;font-weight:600;}
+  h4{margin:1.8rem 0 .4rem;padding-top:.6rem;font-size:1.05rem;font-weight:600;color:var(--h4);
+      border-top:1px solid var(--border);}
+  ul{padding-left:1.25rem;margin:.5rem 0 1.2rem;} li{margin:.25rem 0;}
+
+  /* ——— blockquotes & copy ——— */
+  .bq-wrap{position:relative;margin:1.1rem 0;}
+  .bq-wrap blockquote{
+      margin:0;padding:1rem 1.2rem;font-size:0.9rem;border:1px solid var(--border);
+      border-radius:4px;background:#fafafa;transition:background-color .15s ease;
+  }
+  .bq-wrap:hover blockquote{background:#f1f1f1;}
+  .copy-btn{position:absolute;top:6px;right:8px;padding:.35rem .8rem;font-size:.85rem;font-weight:600;
+      background:var(--accent);color:#fff;border:0;border-radius:4px;cursor:pointer;opacity:0;visibility:hidden;
+      transform:translateY(-4px);transition:opacity .15s ease,transform .15s ease;}
+  .bq-wrap:hover .copy-btn,.copy-btn:focus-visible,.copy-btn.show{opacity:1;visibility:visible;transform:translateY(0);}
+
+  /* ——— mobile tweaks ——— */
+  .menu-toggle{display:none;position:fixed;top:.75rem;left:.75rem;background:var(--accent);color:#fff;
+      border:0;padding:.55rem .9rem;border-radius:4px;font-size:1rem;cursor:pointer;z-index:1000;}
+  @media(max-width:768px){
+    nav{position:fixed;left:-100%;top:0;width:100%;height:100vh;transition:left .3s ease;
+        padding:4rem 1.25rem 2rem;max-height:none;} nav.open{left:0;}
+    .menu-toggle{display:block;} main{padding:4rem 1rem 80vh;}
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" aria-label="Åbn menu">☰ Menu</button>
+
+<div class="wrapper">
+  <nav>
+    <h1>Indhold</h1>   <!-- text changed -->
+    <ul id="toc-list"></ul>
+
+    <!-- name input -->
+    <div class="name-box">
+      <label for="spname">Mit navn</label>
+      <div class="field-group">
+        <input id="spname" type="text" placeholder="Indtast navn">
+        <button id="save-name">Gem</button>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- -------------  YOUR CONTENT STARTS HERE (unchanged) ------------- -->
+
+    <h1>Standardsvar til Probo</h1>
+    <p>Denne side indeholder en række standardsvar som kan gøre det nemmere at besvare beboernes henvendelser på en hurtig og ensartet måde.<br>Dokumentet er ment som en hjælp til servicepersonalet daglige arbejde med at løse Probo opgaver, og dokumentet kan løbende opdateres med nye/bedre svar som vi lærer med tiden.</p>
+    <h2>Generelt om serviceopgaver</h2>
+
+    <h3>Almindelige opgaver</h3>
+    <p>Opgaver (nye nøgler, postkasseskilte, elevatorer mv) som løses af Taurus håndteres ud fra den arbejdsgang som servicepersonalet selv tilrettelægger.<br>Det er dog vigtigt at når en opgave startes (sættes til “Igang”), at der altid laves en kommentar på opgaven, da beboeren dermed får besked pr. mail. Dette giver beboeren en bedre oplevelse, og i de fleste tilfælde undgår man, at de henvender sig flere gange med bekymring/beklagelse omkring om opgaven er nået frem.
+</p>
+    <p>Kommentareren kan i de fleste tilfælde bare være “Hej YYY, vi ser på det. Mvh XXX” eller hvad der falder naturligt for.</p>
+
+    <h3>Opgaver der <u>ikke</u> hører under ejerforeningen</h3>
+    <p>Beboere er ikke altid vidende omkring, hvad Taurus/Ejerforeningens opgaver er, og hvor grænsen mellem f.eks. privat vedligehold eller grundejerforeningens områder ligger. Og nogle beboere henvender sig også bare for at søge råd om hvad de skal gøre med deres problem.</p>
+
+    <h4>Beboerens eget vedligehold</h4>
+    <p>Hvis opgaven hører under beboerens eget vedligehold (spejle, varme mv.)</p>
+    <blockquote>
+      Beklager, men vi kan desværre ikke hjælpe med din XXX. Det hører under din ejerboligs eget vedligehold/reparation.<br><br>
+      Hvis du ikke selv kan løse problemet, kan du kontakte YYY for egen bekostning.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+    <p>YYY kan udfyldes med en specifik virksomhed og telefonnummer. I tilfælde hvor I ikke kender et speficikt firma kan I skrive “en tømrer”, “en elektrikker”, “en VVS’er” eller lign.</p>
+
+    <h4>Andres vedligehold</h4>
+    <p>Hvis opgaven hører andres vedligehold (veje, fortov, byggepladser mv.)</p>
+    <blockquote>
+      Beklager, men vi kan desværre ikke hjælpe med XXX. Det hører ikke under ejerforeningens område/ansvar/ejerskab.<br><br>
+      Jeg vil anbefale at du kontakter YYY med din henvendelse.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+    <p>YYY kan udfyldes med et specifikt firma og telefonnummer. I tilfælde hvor I ikke kender et specifikt firma kan I skrive “grundejerforeningen (driftcby@cej.dk)”, “APCOA”, “Carlsberg Byen”, “Københavns Kommune” eller lign.</p>
+
+    <h3>Opgaver til bestyrelsen</h3>
+    <p>Hvis en opgave skal besvares af bestyrelsen (forslag, voldgiftsag, referater) <strong>ændres opgaveløser i Probo til “Bestyrelsen”</strong>.<br>Ring gerne med formanden forinden, hvis der er tvivl om opgaven er noget bestyrelsen kan svare på.</p>
+    <p>Samtidig bruges følgende standardsvar</p>
+    <blockquote>
+      Din henvendelse er givet videre til bestyrelsen, som vil følge op via denne serviceopgave.<br>
+      Du skal forvente en svartid på op til 10 dage.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+
+    <h2>Nøgler og brikker, bestilling</h2>
+    <p>Hovedparten af henvendelser er bestillinger af nøgler og/eller brikker, og det er derfor vigtigt at de bliver behandlet og afsluttet hurtigt og effektivt, for at bevare overblik over de vigtigere og mere tidskrævende opgaver.</p>
+
+    <h4>Manglende formular</h4>
+    <p>Ved bestillinger af nøgler og brikker ved mange beboere ikke, at de skal udfylde en formular for at kunne bestille.<br>
+    Mangler beboeren at udfylde formularen, kan følgende besvarelse bruges, og status ændres til <strong>Afventer</strong>:</p>
+    <blockquote>
+      Tak for din henvendelse.<br><br>
+      For at bestille nøgler eller brikker, bedes du udfylde de relevante bestillingsformularer og uploade dem som fil til denne serviceopgave.<br><br>
+      Formularerne findes i Probo under “Dokumentarkiv” i mappen “Nøgler og brikker”.<br><br>
+      Hvis du bestiller en nøgle, skal du også vedhæfte et billede af bagsiden af en af dine eksisterende nøgler.<br>
+      Husk at trykke “Gem”, så du kan se, at filerne er korrekt uploadet til sagen.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+    <h4>Efter 1 uge uden svar</h4>
+    <p>Efter 1 uge, hvis der ikke er kommet svar/filer på sagen, bruges følgende svar, og status ændres til <strong>Afsluttet</strong>:</p>
+    <blockquote>
+      Vi har endnu ikke modtaget den udfyldte formular, og derfor lukker vi denne opgave for nu.<br><br>
+      Vi vil meget gerne hjælpe dig, og når du har udfyldt formularen/-erne, er du selvfølgelig velkommen til at oprette en ny serviceopgave og vedhæfte de relevante filer for det, du ønsker at bestille.<br>
+      Husk at trykke “Gem”, så du kan se, at filerne er korrekt uploadet til sagen.<br><br>
+      Formularerne findes i Probo under “Dokumentarkiv” i mappen “Nøgler og brikker”.<br><br>
+      Hvis du bestiller en nøgle, skal du også vedhæfte et billede af bagsiden af en af dine eksisterende nøgler.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+
+    <h4>Efter formularen er behandlet</h4>
+      <p>Når bestilling(erne) er behandlet besvares følgende og status markeres som <strong>Afsluttet</strong> (fjern evt. de punkter som ikke er relevante):</p>
+      <blockquote>
+      <p>Vi har nu behandlet din bestilling.</p>
+      <p>
+        • Adgangsbrik(ker) bliver lagt i din lejligheds postkasse.<br>
+        • Nøglebestillingen er videregivet til Sera Låse, som kontakter dig direkte via mail eller telefon vedrørende betaling og levering, baseret på de oplysninger, du har angivet.
+      </p>
+      <p>Opgaven afsluttes hermed. Du er altid velkommen til at oprette en ny serviceopgave, hvis der opstår spørgsmål eller problemer.</p>
+      <p>Med venlig hilsen ZZZ</p>
+    </blockquote>
+
+    <h2>Forsikringssager/-skader</h2>
+    <p>Skader der anmeldes til forsikringen kan tage længere tid at løse. Hvis en beboer melder om hærværk som du ved vil kunne tage længere tid at løse, er det godt at besvare dem omkring processen, for at forventningsafstemme og undgå gentagne klager.</p>
+    <p>Brug nedenstående svar og afslut sagen, og <strong>sæt samtidig et skilt op</strong> ved skaden så det er synligt for andre beboere.</p>
+    <blockquote>
+      Tak for din indmelding.<br><br>
+      Vi vil besigtige og dokumentere skaden, samt indhente tilbud på udbedringen. Da det er et forsikringsrelateret forhold, melder vi det til bygningsforsikringen. Hvis skaden skyldes hærværk eller indbrud, sørger vi også for at anmelde det til politiet.<br><br>
+      Udbedringen sættes i gang, når vi har en tilbagemelding fra forsikring.<br><br>
+      Vi starter processen op nu, og afslutter derfor serviceopgaven her, da det i nogle tilfælde kan tage op til 2 måneder fra anmeldelse til udbedring. Du behøver ikke gøre yderligere.<br><br>
+      Du er altid velkommen til at oprette en ny serviceopgave, hvis du har andre spørgsmål.<br><br>
+      Hvis der er sket skade på personlige ejendele, som for eksempel ved vandskade i opbevaringsrum, skal du anmelde dette til din egen indboforsikring.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+
+    <h2>Gulvvarme</h2>
+    <p>Når temperaturen falder udenfor, kan nogle beboere opleve udfordringer med gulvvarmen. Vi har derfor udarbejdet en guide, der kan hjælpe dig, hvis gulvvarmen driller. Brug nedenstående svar og afslut sagen.</p>
+    <blockquote>
+      Tak for din henvendelse.<br><br>
+      Taurus kan desværre ikke hjælpe med varmesystemet i din ejerlejlighed, da dette er en del af dit eget ejerskab/ansvar og vedligeholdelse som ejer.<br>
+      Men vi har lavet en guide som du kan finde i Probo-menuen under "Dokumentarkiv › Vedligehold og brugsvejledninger › Gulvvarme, gode råd og selvhjælp.pdf". Guiden er på både dansk og engelsk. Her kan du også finde kontaktoplysninger til den VVS’er, vi anbefaler, hvis problemet ikke kan løses på egen hånd.<br><br>
+      Jeg håber det kan hjælpe dig et godt stykke af vejen.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+
+    <h2>Vinduespudsning i Pasteurs Tårn</h2>
+    <p>Der kommer normalt en del henvendelser, når vinduespudsning af Pasteurs Tårn udføres, fra beboere som er bange for at blive “glemt” eller ikke er tilfredse med kvaliteten.</p>
+    <p>For at imødekomme disse spørgsmål bruges nedenstående svar, og <strong>sæt status på sagen til Afventer</strong>:</p>
+    <blockquote>
+      Tak for din henvendelse.<br><br>
+      Vinduespudseren er endnu ikke færdig med arbejdet. Vinduespudsning af tårnet er en kompleks opgave, der afhænger af vejrforhold, vindretning, planlægning af firmaets mandskab, tekniske udfordringer m.m. Derfor strækker arbejdet sig ofte over flere uger. Det betyder, at nogle vinduer pudses på ét tidspunkt, mens andre vinduer først pudses senere, afhængigt af forholdene som f.eks. vindretningen skifter.<br><br>
+      Vinduespudseren gør sit bedste for at optimere arbejdet, så alle vinduer bliver pudset hurtigst muligt - og er i mange tilfælde også klar over, hvis der er lavet fejl, som de skal tilbage til.<br><br>
+      Jeg har noteret din lejlighed og følger op, når vinduespudseren melder arbejdet færdigt. Herefter vil jeg skrive til dig på sagen for at høre, om dine vinduer er pudset korrekt, så vi kan lave en samlet liste til vinduespudserens gennemgang. Du er også meget velkommen til at opdatere mig her på sagen undervejs, hvis/når dine vinduer bliver pudset, så vi kan afslutte sagen hurtigere.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+
+    <h2>Skraldelugt i Pasteurs Tårn</h2>
+    <p>Der er to skraldesug på hver etage i Pasteurs Tårn, der til tider skaber lugtgener på gangene. Det skyldes ofte forkert brug af skaktene, hvor folk smider alt fra kattegrus til paraplyer ind uden nogen omtanke.</p>
+    <p>Hvis henvendelsen udelukkende handler om lugtgener, og skakten ikke er blokeret af genstande, kan følgende besvarelse bruges, og status markeres som <strong>Afsluttet</strong>:</p>
+    <blockquote>
+      Tak for din henvendelse.<br><br>
+      Vi er opmærksomme på problemet med lugtgener fra skraldeskakten. Udfordringen opstår ofte, når nogle beboere smider ting som kattegrus, madrester eller andre genstande i skakten, som skaber lugtgener for resten af ejendommen. Derudover bliver skakten til tider blokeret af løse genstande, som kan forhindre udluftning fra toppen af bygningen. For at afhjælpe dette har vi selv indført ugentlige tjek for at fjerne poser eller genstande, der blokerer udluftningen.<br><br>
+      Der er tidligere kontakt med ekstern specialist blevet bekræftet, at bygningen og skakterne overholder gældende standarder. De gener, vi oplever, skyldes primært ukorrekt brug. Vi har derfor gentagne gange opfordret beboerne til at lukke sine poser, udvise omtanke og har opsat skilte ved skraldeskakterne som en påmindelse. Lugtgenerne kan kun mindskes, hvis alle beboere bruger skakten med hensyn til bygningen og deres naboer.<br><br>
+      Lugtgenerne kan variere afhængigt af, hvad der smides i skakten, men de påvirkes også af temperaturforskelle og vejrforhold. Lugten mindskes som regel efter den ugentlige kommunale tømning, og når affaldsresterne i skakten tørrer ind.<br><br>
+      Jeg kan desværre ikke gøre noget ved lugten hos jer, men jeg kan anbefale, at du sammen med dine naboer overvejer at stille et lille glas med duftpinde oven på brandskabet på gangen. Flere etager benytter denne løsning med gode resultater, når lugten bliver for generende.<br><br>
+      Jeg håber, dette kan være en hjælp.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+
+    <h2>Ventilation – problemer med hylelyde</h2>
+    <p>Når beboere beklager sig over larm fra ventilationen, kan der være tale om, at anlægget er i “brandtilstand” og kører på 100 %.</p>
+    <p>Hvis der ikke er problemer med det centrale anlæg, og klagen består i lyd fra skaktene der blæser/suger luft, kan følgende besvarelse bruges, og status markeres som <strong>Afsluttet</strong>:</p>
+    <blockquote>
+      Tak for din henvendelse.<br><br>
+      Vi har tjekket det centrale ventilationsanlæg, som fungerer normalt, og der er ikke sket ændringer i driften.<br><br>
+      Det er desværre ret almindeligt, at der over tid kan opstå hylelyde fra ventilationsåbningerne i lejlighederne. Lydene skyldes ofte, at der samler sig mikroskopisk støv eller snavs i åbningen, hvilket kan give vibrationer eller svingninger i luftstrømmen. Du kan nogle gange selv afhjælpe problemet ved forsigtigt at støvsuge ventilationsåbningen eller fjerne støvet med en tør klud.<br><br>
+      Vi kan desværre ikke hjælpe med ventilationskanalerne i din ejerlejlighed, da dette hører under dit eget ansvar som ejer og en del af vedligeholdelsen af din bolig.<br><br>
+      Hvis du ønsker at få det undersøgt nærmere, kan du f.eks. kontakte E-Klink, som har erfaring med ventilation, og få dem til at kigge på det for egen bekostning.<br><br>
+      Med venlig hilsen ZZZ
+    </blockquote>
+  </main>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ---------- build TOC ---------- */
+  const toc=document.getElementById("toc-list");
+  document.querySelectorAll("main h2,main h3,main h4").forEach((h,i)=>{
+    const lvl=h.tagName.slice(1),id=h.id||`sec-${i+1}`;h.id=id;
+    toc.insertAdjacentHTML("beforeend",`<li class="level-${lvl}"><a href="#${id}">${h.textContent}</a></li>`);
+  });
+
+  /* ---------- drawer toggle ---------- */
+  const nav=document.querySelector("nav");
+  document.querySelector(".menu-toggle").addEventListener("click",()=>nav.classList.toggle("open"));
+  nav.addEventListener("click",e=>{if(e.target.tagName==="A"&&innerWidth<=768){setTimeout(()=>nav.classList.remove("open"),200);}});
+
+  /* ---------- blockquotes: wrap, copy, long-press ---------- */
+  document.querySelectorAll("main blockquote").forEach(bq=>{
+    const wrap=document.createElement("div");wrap.className="bq-wrap";bq.parentNode.insertBefore(wrap,bq);wrap.appendChild(bq);
+    bq.dataset.original=bq.innerHTML;                     /* keep raw with ZZZ */
+    const btn=document.createElement("button");btn.className="copy-btn";btn.type="button";btn.textContent="Kopier";
+    wrap.appendChild(btn);
+
+    /* click on button (desktop) */
+    btn.addEventListener("click",copyNow);
+
+    /* long-press on quote (mobile) */
+    let pressTimer=null;
+    wrap.addEventListener("touchstart",()=>{
+      btn.classList.add("show");                          /* reveal pill asap */
+      pressTimer=setTimeout(copyNow,500);                 /* 500 ms long-press */
+    });
+    wrap.addEventListener("touchend",clearPress);
+    wrap.addEventListener("touchcancel",clearPress);
+
+    function clearPress(){clearTimeout(pressTimer);setTimeout(()=>btn.classList.remove("show"),1600);}
+
+    function copyNow(){
+      navigator.clipboard.writeText(bq.innerText.trim()).then(()=>{
+        btn.textContent="Kopieret!";
+        setTimeout(()=>{btn.textContent="Kopier";btn.classList.remove("show");},1500);
+      });
+    }
+  });
+
+  /* ---------- name logic ---------- */
+  const nameInput=document.getElementById("spname"),saveBtn=document.getElementById("save-name");
+
+  function applyName(){
+    const name=localStorage.getItem("service_person_name")||"";
+    document.querySelectorAll("main blockquote").forEach(bq=>{
+      const tmpl=bq.dataset.original||bq.innerHTML;
+      bq.innerHTML = name ? tmpl.replace(/ZZZ/g,name) : tmpl;   // keep ZZZ if blank
+    });
+  }
+
+  function renderNameBox(){
+    const stored=localStorage.getItem("service_person_name")||"";
+    if(stored){
+      nameInput.value=stored;nameInput.readOnly=true;saveBtn.classList.add("hidden");
+    }else{
+      nameInput.value="";nameInput.readOnly=false;saveBtn.classList.remove("hidden");
+    }
+    applyName();
+  }
+
+  renderNameBox();
+
+  function saveName(){
+    const val=nameInput.value.trim();
+    val ? localStorage.setItem("service_person_name",val) : localStorage.removeItem("service_person_name");
+    renderNameBox();
+  }
+
+  saveBtn.addEventListener("click",saveName);
+
+  /* Enter key should save, like clicking the button */
+  nameInput.addEventListener("keydown",e=>{
+    if(e.key==="Enter"){e.preventDefault();saveName();}
+  });
+
+  nameInput.addEventListener("click",()=>{
+    if(nameInput.readOnly){nameInput.readOnly=false;saveBtn.classList.remove("hidden");nameInput.focus();}
+  });
+});
+</script>
+</body>
+</html>
