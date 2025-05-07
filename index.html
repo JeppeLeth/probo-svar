@@ -271,11 +271,28 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ---------- TOC ---------- */
+  /* ----- slugify helper  ----- */
+  const usedIds=new Set();
+  const slugify=str=>{
+    let slug=str.toLowerCase()
+      .trim()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g,'')   /* strip accents */
+      .replace(/[^a-z0-9]+/g,'-')                       /* non-word → dash */
+      .replace(/^-+|-+$/g,'');                          /* trim dashes */
+    let unique=slug,count=1;
+    while(usedIds.has(unique)||unique===""){unique=`${slug}-${count++}`;}
+    usedIds.add(unique);
+    return unique;
+  };
+
+  /* ---------- build TOC with text-based IDs ---------- */
   const toc=document.getElementById("toc-list");
-  document.querySelectorAll("main h2,main h3,main h4").forEach((h,i)=>{
-    const lvl=h.tagName.slice(1),id=h.id||`sec-${i+1}`;h.id=id;
-    toc.insertAdjacentHTML("beforeend",`<li class="level-${lvl}"><a href="#${id}">${h.textContent}</a></li>`);
+  document.querySelectorAll("main h2,main h3,main h4").forEach(h=>{
+    const lvl=h.tagName.slice(1);
+    const id=h.id||slugify(h.textContent);
+    h.id=id;
+    toc.insertAdjacentHTML("beforeend",
+      `<li class="level-${lvl}"><a href="#${id}">${h.textContent}</a></li>`);
   });
 
   /* ---------- Drawer toggle ---------- */
@@ -350,9 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
   nameInput.addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();saveName();}});
   nameInput.addEventListener("click",()=>{
     if(nameInput.readOnly){
-      nameInput.readOnly=false;
-      saveBtn.classList.remove("hidden");
-      nameInput.focus();
+      nameInput.readOnly=false;saveBtn.classList.remove("hidden");nameInput.focus();
     }
   });
 });
